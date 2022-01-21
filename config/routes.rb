@@ -2,15 +2,16 @@ Rails.application.routes.draw do
 
   mount Blacklight::Oembed::Engine, at: 'oembed'
   mount Riiif::Engine => '/images', as: 'riiif'
-  root to: 'spotlight/exhibits#index'
+  # root to: 'spotlight/exhibits#index'
   mount Spotlight::Engine, at: '/exhibits'
   mount Blacklight::Engine => '/'
-#  root to: "catalog#index" # replaced by spotlight root path
+  root to: "catalog#index"
   concern :searchable, Blacklight::Routes::Searchable.new
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable
   end
+
   devise_for :users
   concern :exportable, Blacklight::Routes::Exportable.new
 

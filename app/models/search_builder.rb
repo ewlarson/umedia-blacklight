@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 class SearchBuilder < Blacklight::SearchBuilder
   include Blacklight::Solr::SearchBuilderBehavior
-
   include Spotlight::SearchBuilder
+  include Umedia::ParentRecordBehavior
 
   ##
   # @example Adding a new step to the processor chain

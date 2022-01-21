@@ -1,5 +1,10 @@
 ### Default Gem Field mappings
 ---
+# Solr field mappings
+fields:
+  :collection_name: 'collection_name_ssi'
+  :contributing_organization_name: 'contributing_organization_ssi'
+
 field_mappings:
   -
     dest_path: location_llsi
