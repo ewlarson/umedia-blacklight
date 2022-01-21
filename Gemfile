@@ -60,6 +60,7 @@ gem 'blacklight-spotlight', github: 'projectblacklight/spotlight'
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
 end
+
 gem 'rsolr', '>= 1.0', '< 3'
 gem 'bootstrap', '~> 4.0'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
@@ -74,3 +75,11 @@ gem 'blacklight-gallery', '~> 3.0'
 gem 'openseadragon', '>= 0.2.0'
 gem 'blacklight-oembed', '~> 1.0'
 gem 'devise_invitable'
+
+# ContentDM Harvesting/Indexing
+gem 'config'
+gem 'contentdm_api', github: 'ewlarson/contentdm_api', branch: 'feature/http-latest'
+gem 'cdmdexer', github: 'ewlarson/cdmdexer', branch: 'feature/umedia-blacklight'
+gem 'foreman', '~> 0.80'
+gem 'sidekiq', '~> 6.0'
+gem 'dotenv-rails'

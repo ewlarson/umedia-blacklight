@@ -24,7 +24,7 @@
       * collection_thumbnails          => collection_thumbnails_tes
       * is_super_collection            => is_super_collection_bsi
       * object                         => object_ssi
-      * set_spec                       => set_spec_ssi
+      * setspec                       => setspec_ssi
       * collection_name                => collection_name_tesi
       * collection_description         => collection_description_tesi
       * collection_recency_sort        => collection_recency_sort_isi
@@ -137,6 +137,8 @@
     <dynamicField name="*_te_split" type="text_en_splitting_tight" stored="true" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
 
     <dynamicField name="*_te_ascii" type="text_en_ascii" stored="true" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
+
+    <dynamicField name="*_unstem_search" type="textNoStem" indexed="true" stored="false" multiValued="true" />
 
     <!-- string (_s...) -->
 
@@ -523,6 +525,19 @@
         <filter class="solr.PorterStemFilterFactory"/>
       </analyzer>
     </fieldType>
+
+    <!-- Analyzed Text, no Stemming or Synonyms -->
+    <fieldtype name="textNoStem" class="solr.TextField" positionIncrementGap="100" autoGeneratePhraseQueries="true">
+      <analyzer>
+        <tokenizer class="solr.WhitespaceTokenizerFactory" />
+        <filter class="solr.ICUFoldingFilterFactory"/>  <!-- NFKC, case folding, diacritics removed -->
+        <filter class="solr.WordDelimiterFilterFactory"
+          splitOnCaseChange="1" generateWordParts="1" catenateWords="1"
+          splitOnNumerics="0" generateNumberParts="1" catenateNumbers="1"
+          catenateAll="0" preserveOriginal="0" stemEnglishPossessive="0" />
+        <filter class="solr.RemoveDuplicatesTokenFilterFactory" />
+      </analyzer>
+    </fieldtype>
 
     <!-- queries for paths match documents at that path, or in descendent paths -->
     <fieldType name="descendent_path" class="solr.TextField">
