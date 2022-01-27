@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'faraday'
+
 desc 'Run test suite'
 task :ci do
   shared_solr_opts = { managed: true, verbose: true, persist: false, download_dir: 'tmp' }
@@ -110,6 +112,21 @@ namespace :umedia do
         'batch_size' => 10,
         'max_compounds' => 10
       )
+    end
+
+    desc 'Backup'
+    task :backup => :environment do
+      solr = ENV['SOLR_URL']
+      replication = 'replication?command=backup'
+
+      res = Faraday.get "#{solr}/#{replication}"
+      puts res.body
+
+      sleep(10)
+
+      snapshots = Dir.glob("#{Rails.root.join('tmp/blacklight-core/server/solr/blacklight-core/data/snapshot.*')}")
+
+      FileUtils.cp_r(snapshots, "#{Rails.root.join('solr/snapshots')}")
     end
   end
 end
