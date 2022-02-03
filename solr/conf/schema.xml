@@ -24,7 +24,7 @@
       * collection_thumbnails          => collection_thumbnails_tes
       * is_super_collection            => is_super_collection_bsi
       * object                         => object_ssi
-      * setspec                       => setspec_ssi
+      * setspec                        => setspec_ssi
       * collection_name                => collection_name_tesi
       * collection_description         => collection_description_tesi
       * collection_recency_sort        => collection_recency_sort_isi

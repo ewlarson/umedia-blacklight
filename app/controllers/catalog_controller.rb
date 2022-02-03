@@ -80,6 +80,9 @@ class CatalogController < ApplicationController
     # Last Updated
     config.add_index_field 'dmmodified_ssi', :label => 'Last Updated'
 
+    # Thumbnails
+    config.index.thumbnail_field = :object_ssi
+
 	#ITEM VIEW FIELDS
     # @TODO: itemprops
     # @TODO: Section Headers (##)

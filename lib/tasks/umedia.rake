@@ -103,12 +103,12 @@ namespace :umedia do
     end
 
     desc 'Harvest'
-    task :harvest_mpls => :environment do
+    task :harvest => :environment do
       CDMDEXER::ETLWorker.new.perform(
         'solr_config' => {:url=>ENV['SOLR_URL']},
         'oai_endpoint' => ENV['OAI_ENDPOINT'],
         'cdm_endpoint' => ENV['CDM_ENDPOINT'],
-        'set_spec' => 'mpls',
+        'set_spec' => 'p16022coll208',
         'batch_size' => 10,
         'max_compounds' => 10
       )
