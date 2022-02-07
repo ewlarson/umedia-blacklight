@@ -45,13 +45,13 @@ class CatalogController < ApplicationController
     config.add_facet_field 'type_ssi', :label => 'Type', :limit => 8, collapse: false
 
     # Format / format_name
-    config.add_facet_field 'physical_format_ssi', :label => 'Format', :limit => 8, collapse: false
+    config.add_facet_field 'format_name_ssimv', :label => 'Format', :limit => 8, collapse: false
 
     # Created / date_created_ss
-    config.add_facet_field 'dat_ssi', :label => 'Created', :limit => 8, collapse: false
+    config.add_facet_field 'date_created_sort_ssortsi', :label => 'Created', :limit => 8, collapse: false
 
     # Subject / subject_ss
-    config.add_facet_field 'formal_subject_ssim', :label => 'Subject', :limit => 8, collapse: false
+    config.add_facet_field 'subject_ssim', :label => 'Subject', :limit => 8, collapse: false
 
     # Creator / creator_ss
     config.add_facet_field 'creator_ssim', :label => 'Creator', :limit => 8, collapse: false
