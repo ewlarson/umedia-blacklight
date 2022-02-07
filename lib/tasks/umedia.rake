@@ -104,14 +104,26 @@ namespace :umedia do
 
     desc 'Harvest'
     task :harvest => :environment do
-      CDMDEXER::ETLWorker.new.perform(
-        'solr_config' => {:url=>ENV['SOLR_URL']},
-        'oai_endpoint' => ENV['OAI_ENDPOINT'],
-        'cdm_endpoint' => ENV['CDM_ENDPOINT'],
-        'set_spec' => 'p16022coll208',
-        'batch_size' => 10,
-        'max_compounds' => 10
-      )
+      # mpls          => MDL collection
+      # p16022coll262 => UMedia video collection
+      # p16022coll208 => UMedia WWII poster collection
+      # p16022coll171 => UMedia audio collection
+      # p16022coll282 => UMedia compound objects (ex. p16022coll282:6571)
+
+      example_sets = [
+        "p16022coll262", "p16022coll208", "p16022coll171", "p16022coll282"
+      ]
+
+      example_sets.each do |set|
+        CDMDEXER::ETLWorker.new.perform(
+          'solr_config' => {:url=>ENV['SOLR_URL']},
+          'oai_endpoint' => ENV['OAI_ENDPOINT'],
+          'cdm_endpoint' => ENV['CDM_ENDPOINT'],
+          'set_spec' => set,
+          'batch_size' => 10,
+          'max_compounds' => 10
+        )
+      end
     end
 
     desc 'Backup'
@@ -127,6 +139,18 @@ namespace :umedia do
       snapshots = Dir.glob("#{Rails.root.join('tmp/blacklight-core/server/solr/blacklight-core/data/snapshot.*')}")
 
       FileUtils.cp_r(snapshots, "#{Rails.root.join('solr/snapshots')}")
+    end
+
+    task :restore => :environment do
+      solr = ENV['SOLR_URL']
+      replication = 'replication?command=restore'
+
+      snapshot = Dir.glob("#{Rails.root.join('solr/snapshots/snapshot.*')}").last
+
+      FileUtils.cp_r(snapshot, "#{Rails.root.join('tmp/blacklight-core/server/solr/blacklight-core/data')}")
+
+      res = Faraday.get "#{solr}/#{replication}"
+      puts res.body
     end
   end
 end
