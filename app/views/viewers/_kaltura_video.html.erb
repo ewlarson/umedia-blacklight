@@ -1,0 +1,19 @@
+<div id="kaltura_player" class="kaltura-video-player" itemprop="video" itemscope itemtype="http://schema.org/VideoObject" style="height:500px;">
+  <span itemprop="thumbnailUrl" content="https://cfvod.kaltura.com/p/1369852/sp/136985200/thumbnail/entry_id/0_dmthwh6r/version/0"></span>
+  <span itemprop="width" content="1000"></span>
+  <span itemprop="height" content="500"></span>
+</div>
+
+<script>
+  kWidget.embed(
+    {
+      "targetId":"kaltura_player",
+      "wid":  "_1369852",
+      "uiconf_id":  "42156071",
+      "entry_id": "<%= document._source['kaltura_video_ssi'] %>",
+      "flashvars": {
+        "streamerType":"auto"
+        }
+      }
+  );
+</script>
