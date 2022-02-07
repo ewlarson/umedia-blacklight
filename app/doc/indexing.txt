@@ -1,0 +1,7 @@
+# Index via rake task
+# Task can be configured for example sets
+bundle exec rake umedia:index:harvest
+
+# Send "commit" to Solr
+rails console
+Blacklight.default_index.connection.commit
