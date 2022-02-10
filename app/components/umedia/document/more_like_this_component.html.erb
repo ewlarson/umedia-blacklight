@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="card-header">More Like This</div>
+  <div class="card-body">
+    <ul class="list-group">
+      <% @document.more_like_this.each do |document| %>
+        <li class="more_like_this_document list-group-item">
+          <span class="mlt_title"><%= link_to_document document %></span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

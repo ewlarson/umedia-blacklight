@@ -22,4 +22,15 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
+
+  def more_like_this
+    mlt_response = Blacklight.default_index.connection.get 'mlt', params: {
+      q: "id:#{RSolr.solr_escape(self.id)}",
+      rows: 5
+    }
+
+    mlt_response['response']['docs'].map do |doc|
+      SolrDocument.new(doc)
+    end
+  end
 end
