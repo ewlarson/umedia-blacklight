@@ -20,5 +20,7 @@ module Umedia
     # config.time_zone = "Central Time (US & Canada)"
 
     config.eager_load_paths += Dir[ Rails.root.join('app', 'lib', '**', '**.rb') ]
+
+    config.hosts << "umedia.ngrok.io"
   end
 end

@@ -83,3 +83,6 @@ gem 'cdmdexer', github: 'ewlarson/cdmdexer', branch: 'feature/umedia-blacklight'
 gem 'foreman', '~> 0.80'
 gem 'sidekiq', '~> 6.0'
 gem 'dotenv-rails'
+
+# IIIF Manifests
+gem 'rack-cors', :require => 'rack/cors'
