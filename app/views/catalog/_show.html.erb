@@ -1,34 +1,16 @@
-<h3>Viewer Type: <%= document._source['viewer_type_ssi'] %></h3>
-
-<!-- Images and Text -->
-<% if document._source['viewer_type_ssi'] == 'image' %>
-  <% content_for(:head) do %>
-    <script src="/uv/UV.js"></script>
-    <link rel="stylesheet" href="/uv/uv.css">
-    <style>#uv { width: 70vw; height: 100vh; margin-bottom: 1rem; }</style>
+<!-- Viewer -->
+<div data-viewer-type="<%=document._source['viewer_type_ssi']%>">
+  <% case document._source['viewer_type_ssi'] %>
+    <% when 'image' %>
+      <%= render partial: 'viewers/uv_image', locals: { document: document } %>
+    <% when 'kaltura_audio' %>
+      <%= render partial: 'viewers/kaltura_audio', locals: { document: document } %>
+    <% when 'kaltura_video' %>
+      <%= render partial: 'viewers/kaltura_video', locals: { document: document } %>
+    <% else %>
+      <%= render partial: 'viewers/uv_iiif_manifest', locals: { document: document } %>
   <% end %>
-
-  <div id="uv" class="uv"></div>
-  <script>
-    var uv = UV.init(
-      "uv",
-      {
-        manifest: "https://cdm16022.contentdm.oclc.org/iiif/2/<%= document.id %>/manifest.json",
-        config: "/uv/config.json",
-      },
-    );
-  </script>
-<% end %>
-
-<!-- Audio -->
-<% if document._source['viewer_type_ssi'] == 'kaltura_audio' %>
-  <%= render partial: 'viewers/kaltura_audio', locals: { document: document } %>
-<% end %>
-
-<!-- Video -->
-<% if document._source['viewer_type_ssi'] == 'kaltura_video' %>
-  <%= render partial: 'viewers/kaltura_video', locals: { document: document } %>
-<% end %>
+</div>
 
 <%= render(
   Blacklight::DocumentMetadataComponent.new(
