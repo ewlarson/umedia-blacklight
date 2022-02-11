@@ -449,6 +449,7 @@ GEM
       deprecation (>= 1.0.0)
       iiif-image-api (>= 0.1.0)
       railties (>= 4.2, < 7)
+    rinku (2.0.6)
     roar (1.1.1)
       representable (~> 3.0)
     roar-rails (1.1.0)
@@ -600,6 +601,7 @@ DEPENDENCIES
   rack-cors
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.4)
+  rinku
   rsolr (>= 1.0, < 3)
   sass-rails (>= 6)
   selenium-webdriver

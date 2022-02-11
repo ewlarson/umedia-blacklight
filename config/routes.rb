@@ -27,6 +27,14 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :iiif, only: [] do
+    member do
+      get :manifest
+      get :search
+      get :autocomplete
+    end
+  end
+
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

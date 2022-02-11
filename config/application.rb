@@ -24,3 +24,6 @@ module Umedia
     config.hosts << "umedia.ngrok.io"
   end
 end
+
+module MDL
+end

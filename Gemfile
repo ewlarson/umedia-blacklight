@@ -86,3 +86,6 @@ gem 'dotenv-rails'
 
 # IIIF Manifests
 gem 'rack-cors', :require => 'rack/cors'
+
+# Citations
+gem 'rinku'
