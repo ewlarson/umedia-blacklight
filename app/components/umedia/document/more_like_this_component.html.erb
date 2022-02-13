@@ -4,7 +4,10 @@
     <ul class="list-group">
       <% @document.more_like_this.each do |document| %>
         <li class="more_like_this_document list-group-item">
-          <span class="mlt_title"><%= link_to_document document %></span>
+          <%= link_to solr_document_path(document) do %>
+            <%= image_tag(document.cdm_thumbnail, { alt: document.fetch(:title_ssi), class: 'rounded mx-auto d-block' }) %>
+            <h3 class="mlt-title"><%= document.fetch(:title_ssi).truncate(30) %></h3>
+          <% end %>
         </li>
       <% end %>
     </ul>

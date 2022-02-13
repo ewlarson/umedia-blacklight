@@ -33,4 +33,9 @@ class SolrDocument
       SolrDocument.new(doc)
     end
   end
+
+  def cdm_thumbnail
+    collection, id = self.id.split(':')
+    "https://cdm16022.contentdm.oclc.org/digital/api/singleitem/collection/#{collection}/id/#{id}/thumbnail"
+  end
 end
